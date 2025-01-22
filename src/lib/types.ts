@@ -12,6 +12,10 @@ export interface Revision {
   body?: string;
 }
 
+export interface Fact {
+  body: string;
+}
+
 export interface Item {
   id: string;
   title: string;
@@ -24,6 +28,7 @@ export interface Item {
   tags?: string[];
   release: Release;
   revisions?: Revision[];
+  facts: Fact[];
   position: [x: number, y: number];
 }
 

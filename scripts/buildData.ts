@@ -93,6 +93,7 @@ async function parseDirectory(dirPath: string): Promise<Item[]> {
             flag: Flag.Default,
             tags: data.tags || [],
             revisions: [],
+            facts: [],
             position: [0, 0],
           };
         } else {
@@ -108,11 +109,15 @@ async function parseDirectory(dirPath: string): Promise<Item[]> {
               : items[id].featured;
         }
 
-        items[id].revisions!.push({
-          release: releaseDate,
-          ring: data.ring,
-          body,
-        });
+        if (dirPath.includes("01-facts")) {
+          items[id].facts.push({ body });
+        } else {
+          items[id].revisions!.push({
+            release: releaseDate,
+            ring: data.ring,
+            body,
+          });
+        }
       }
     }
   }
