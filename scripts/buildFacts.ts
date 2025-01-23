@@ -38,6 +38,8 @@ This cool technology {{filename}} can be used and is easy to implement...
 `;
 
 function createFactFiles(dir: string) {
+  let createdFilesCount = 0;
+
   fs.readdir(dir, (err, files) => {
     if (err) {
       console.error("Error reading directory:", err);
@@ -59,10 +61,12 @@ function createFactFiles(dir: string) {
             factFilePath,
             template.replace("{{filename}}", path.parse(file).name),
           );
-          console.log(`Created missing file: ${factFilePath}`);
+          createdFilesCount++;
         }
       }
     });
+
+    console.log(`Created ${createdFilesCount} fact file(s). Check ${factsDir} and update your content.`);
   });
 }
 
